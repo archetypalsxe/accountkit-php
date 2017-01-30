@@ -1,5 +1,7 @@
 <?php
-require_once("settings.php");
+
+require_once("lib/autoloader.php");
+
 // Initialize variables
 $app_id = APP_ID;
 $secret = APP_SECRET;
