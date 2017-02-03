@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use \Model\AccessData as AccessDataModel;
+use \Connection\AccountKit as AccountKitConnection;
 use \Exception;
 use \Model\User as UserModel;
 
@@ -17,21 +19,7 @@ class AccountKit
     public function getUserInformation($authorizationCode)
     {
         try {
-            // Initialize variables
-            $appId = APP_ID;
-            $secret = APP_SECRET;
-            $version = VERSION;
-
-            // Exchange authorization code for access token
-            $token_exchange_url = 'https://graph.accountkit.com/'.$version.'/access_token?'.
-              'grant_type=authorization_code'.
-              '&code='.$authorizationCode.
-              "&access_token=AA|$appId|$secret";
-            $data = $this->sendCurl($token_exchange_url);
-
-            $user_id = $data['id'];
-            $user_access_token = $data['access_token'];
-            $refresh_interval = $data['token_refresh_interval_sec'];
+            $accessData = $this->retrieveAccessData($authorizationCode);
 
             // Get Account Kit information
             $me_endpoint_url = 'https://graph.accountkit.com/'.$version.'/me?'.
@@ -70,5 +58,18 @@ class AccountKit
         }
 
         return $data;
+    }
+
+    /**
+     * Send the authorization code to Account Kit in order to get access
+     * data back
+     *
+     * @param string $authorizationCode
+     * @return AccessDataModel
+     */
+    protected function retrieveAccessData($authorizationCode)
+    {
+        $connection = new AccountKitConnection();
+        return $connection->sendAuthCode($authorizationCode);
     }
 }
