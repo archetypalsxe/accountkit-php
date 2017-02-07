@@ -4,6 +4,7 @@ namespace Connection;
 
 use \Exception;
 use \Model\AccessData as AccessDataModel;
+use \Model\UserData as UserDataModel;
 
 class AccountKit
 {
@@ -25,6 +26,34 @@ class AccountKit
     }
 
     /**
+     * Send the access token to Account Kit for the user data
+     *
+     * @param AccessDataModel $accessData
+     * @return UserDataModel
+     */
+    public function sendAccessData(AccessDataModel $accessData)
+    {
+        $data = $this->sendRequest($this->getUserDataUrl($accessData));
+        $model = new UserDataModel();
+        $model->phoneNumber = !empty($data['phone']['number']) ?: '';
+        $model->email = !empty($data['email']) ?: '';
+        return $model;
+    }
+
+    /**
+     * Generates a URL to send AccountKit based on provided access data
+     *
+     * @param AccessDataModel $accessData
+     * @return string
+     */
+    protected function getUserDataUrl(AccessDataModel $accessData)
+    {
+        return
+            'https://graph.accountkit.com/'. VERSION .'/me?access_token='.
+            $accessData->accessToken;
+    }
+
+    /**
      * Get the URL for obtaining an access token
      *
      * @param string $authCode
@@ -33,8 +62,7 @@ class AccountKit
     protected function getAccessTokenUrl($authCode)
     {
         return 'https://graph.accountkit.com/'. VERSION .'/access_token?'.
-          'grant_type=authorization_code'.
-          '&code='.$authCode.
+          'grant_type=authorization_code&code='.$authCode.
           "&access_token=AA|". APP_ID ."|". APP_SECRET;
     }
 

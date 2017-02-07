@@ -16,9 +16,9 @@ if(empty($user)) {
   <title>Account Kit PHP App</title>
 </head>
 <body>
-  <div>User ID: <?php echo $user->userId; ?></div>
-  <div>Phone Number: <?php echo $user->phone; ?></div>
-  <div>Email: <?php echo $user->email; ?></div>
-  <div>Access Token: <?php echo $user->accessToken; ?></div>
-  <div>Refresh Interval: <?php echo $user->refreshInterval; ?></div>
+  <div>User ID: <?php echo $user->getUserId(); ?></div>
+  <div>Phone Number: <?php echo $user->getPhoneNumber(); ?></div>
+  <div>Email: <?php echo $user->getEmail(); ?></div>
+  <div>Access Token: <?php echo $user->getAccessToken(); ?></div>
+  <div>Refresh Interval: <?php echo $user->getRefreshInterval(); ?></div>
 </body>

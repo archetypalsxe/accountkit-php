@@ -2,10 +2,11 @@
 
 namespace Controller;
 
-use \Model\AccessData as AccessDataModel;
 use \Connection\AccountKit as AccountKitConnection;
 use \Exception;
+use \Model\AccessData as AccessDataModel;
 use \Model\User as UserModel;
+use \Model\UserData as UserDataModel;
 
 class AccountKit
 {
@@ -20,20 +21,9 @@ class AccountKit
     {
         try {
             $accessData = $this->retrieveAccessData($authorizationCode);
-
-            // Get Account Kit information
-            $me_endpoint_url = 'https://graph.accountkit.com/'. VERSION
-                .'/me?access_token='.$accessData->accessToken;
-            $data = $this->sendCurl($me_endpoint_url);
-            $phone = isset($data['phone']) ? $data['phone']['number'] : '';
-            $email = isset($data['email']) ? $data['email']['address'] : '';
-
             $user = new UserModel();
-            $user->userId = $accessData->userId;
-            $user->phone = $phone;
-            $user->email = $email;
-            $user->accessToken = $accessData->accessToken;
-            $user->refreshInterval = $accessData->refreshInterval;
+            $user->setAccessDataModel($accessData);
+            $user->setUserDataModel($this->retrieveUserData($accessData));
             return $user;
         } catch (\Exception $e) {
             trigger_error($e->getMessage(), E_USER_NOTICE);
@@ -71,5 +61,17 @@ class AccountKit
     {
         $connection = new AccountKitConnection();
         return $connection->sendAuthCode($authorizationCode);
+    }
+
+    /**
+     * Retrieve a user data model based on the provided access data model
+     *
+     * @param AccessDataModel
+     * @return UserDataModel
+     */
+    protected function retrieveUserData(AccessDataModel $accessData)
+    {
+        $connection = new AccountKitConnection();
+        return $connection->sendAccessData($accessData);
     }
 }
