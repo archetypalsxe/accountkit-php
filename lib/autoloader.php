@@ -1,6 +1,6 @@
 <?php
 
-require_once("settings.php");
+require_once("lib/settings.php");
 
 if(stripos($_SERVER['HTTP_HOST'], "localhost") !== FALSE || DEVELOP) {
     ini_set('display_errors', 1);

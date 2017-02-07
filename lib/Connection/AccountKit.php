@@ -5,7 +5,7 @@ namespace Connection;
 use \Exception;
 use \Model\AccessData as AccessDataModel;
 
-class AccounKit
+class AccountKit
 {
     /**
      * Sends out a request to get an authorization code from an access token

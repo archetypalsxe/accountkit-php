@@ -22,18 +22,18 @@ class AccountKit
             $accessData = $this->retrieveAccessData($authorizationCode);
 
             // Get Account Kit information
-            $me_endpoint_url = 'https://graph.accountkit.com/'.$version.'/me?'.
-              'access_token='.$user_access_token;
+            $me_endpoint_url = 'https://graph.accountkit.com/'. VERSION
+                .'/me?access_token='.$accessData->accessToken;
             $data = $this->sendCurl($me_endpoint_url);
             $phone = isset($data['phone']) ? $data['phone']['number'] : '';
             $email = isset($data['email']) ? $data['email']['address'] : '';
 
             $user = new UserModel();
-            $user->userId = $user_id;
+            $user->userId = $accessData->userId;
             $user->phone = $phone;
             $user->email = $email;
-            $user->accessToken = $user_access_token;
-            $user->refreshInterval = $refresh_interval;
+            $user->accessToken = $accessData->accessToken;
+            $user->refreshInterval = $accessData->refreshInterval;
             return $user;
         } catch (\Exception $e) {
             trigger_error($e->getMessage(), E_USER_NOTICE);
