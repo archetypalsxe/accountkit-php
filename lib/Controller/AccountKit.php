@@ -31,26 +31,6 @@ class AccountKit
     }
 
     /**
-     * TODO: Move this into different class
-     */
-    protected function sendCurl($url)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $data = json_decode(curl_exec($ch), true);
-        curl_close($ch);
-        if(!empty($data['error'])) {
-            if(!empty($data['error']['message'])) {
-                throw new Exception($data['error']['message']);
-            }
-            throw new Exception("Error received from Account Kit");
-        }
-
-        return $data;
-    }
-
-    /**
      * Send the authorization code to Account Kit in order to get access
      * data back
      *

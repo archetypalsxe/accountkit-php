@@ -51,7 +51,7 @@ class User
      */
     public function getUserId()
     {
-        return $this->accessDataModel->userId;
+        return $this->accessDataModel->getUserId();
     }
 
     /**
@@ -61,7 +61,7 @@ class User
      */
     public function getPhoneNumber()
     {
-        return $this->userDataModel->phoneNumber;
+        return $this->userDataModel->getPhoneNumber();
     }
 
     /**
@@ -71,7 +71,7 @@ class User
      */
     public function getEmail()
     {
-        return $this->userDataModel->email;
+        return $this->userDataModel->getEmail();
     }
 
     /**
@@ -81,7 +81,7 @@ class User
      */
     public function getAccessToken()
     {
-        return $this->accessDataModel->accessToken;
+        return $this->accessDataModel->getAccessToken();
     }
 
     /**
@@ -91,6 +91,6 @@ class User
      */
     public function getRefreshInterval()
     {
-        return $this->accessDataModel->refreshInterval;
+        return $this->accessDataModel->getRefreshInterval();
     }
 }

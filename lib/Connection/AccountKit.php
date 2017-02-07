@@ -19,9 +19,9 @@ class AccountKit
     {
         $data = $this->sendRequest($this->getAccessTokenUrl($authCode));
         $model = new AccessDataModel();
-        $model->userId = $data['id'];
-        $model->accessToken = $data['access_token'];
-        $model->refreshInterval = $data['token_refresh_interval_sec'];
+        $model->setUserId($data['id']);
+        $model->setAccessToken($data['access_token']);
+        $model->setRefreshInterval($data['token_refresh_interval_sec']);
         return $model;
     }
 
@@ -35,8 +35,16 @@ class AccountKit
     {
         $data = $this->sendRequest($this->getUserDataUrl($accessData));
         $model = new UserDataModel();
-        $model->phoneNumber = !empty($data['phone']['number']) ?: '';
-        $model->email = !empty($data['email']) ?: '';
+        $model->setPhoneNumber(
+            !empty($data['phone']['number']) ?
+                $data['phone']['number'] :
+                ''
+        );
+        $model->setEmail(
+            !empty($data['email']['address']) ?
+                $data['email']['address'] :
+                ''
+        );
         return $model;
     }
 
@@ -50,7 +58,7 @@ class AccountKit
     {
         return
             'https://graph.accountkit.com/'. VERSION .'/me?access_token='.
-            $accessData->accessToken;
+            $accessData->getAccessToken();
     }
 
     /**
@@ -70,7 +78,7 @@ class AccountKit
      * Actually send out the CURL request
      *
      * @param string $url
-     * @return @TODO Not sure what it's returning
+     * @return string[]
      * @throws Exception
      */
     protected function sendRequest($url)
