@@ -1,0 +1,7 @@
+{
+    "name": "archetypalsxe/accountkit-php",
+    "description": "A PHP library for using Facebook's Account Kit",
+    "require": {
+        "php": "^5.3.3 || ^7.0"
+    }
+}
