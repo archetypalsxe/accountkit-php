@@ -1,10 +1,10 @@
 <?php
 
-namespace Connection;
+namespace AccountKit\Connection;
 
+use \AccountKit\Model\AccessData as AccessDataModel;
+use \AccountKit\Model\UserData as UserDataModel;
 use \Exception;
-use \Model\AccessData as AccessDataModel;
-use \Model\UserData as UserDataModel;
 
 class AccountKit
 {

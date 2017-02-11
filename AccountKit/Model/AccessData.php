@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace AccountKit\Model;
 
 /**
  * Class for storing data in response to the access token

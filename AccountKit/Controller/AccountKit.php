@@ -1,12 +1,12 @@
 <?php
 
-namespace Controller;
+namespace AccountKit\Controller;
 
-use \Connection\AccountKit as AccountKitConnection;
+use \AccountKit\Connection\AccountKit as AccountKitConnection;
+use \AccountKit\Model\AccessData as AccessDataModel;
+use \AccountKit\Model\User as UserModel;
+use \AccountKit\Model\UserData as UserDataModel;
 use \Exception;
-use \Model\AccessData as AccessDataModel;
-use \Model\User as UserModel;
-use \Model\UserData as UserDataModel;
 
 class AccountKit
 {

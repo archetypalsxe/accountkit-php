@@ -1,9 +1,9 @@
 <?php
 
-namespace Model;
+namespace AccountKit\Model;
 
-use \Model\AccessData as AccessDataModel;
-use \Model\UserData as UserDataModel;
+use \AccountKit\Model\AccessData as AccessDataModel;
+use \AccountKit\Model\UserData as UserDataModel;
 
 /**
  * Class for holding a user's information

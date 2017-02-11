@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace AccountKit\Model;
 
 /**
  * Class for storing the data that is received when getting user data

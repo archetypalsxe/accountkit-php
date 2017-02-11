@@ -3,5 +3,12 @@
     "description": "A PHP library for using Facebook's Account Kit",
     "require": {
         "php": "^5.3.3 || ^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AccountKit\\Connection\\": "AccountKit/Connection/",
+            "AccountKit\\Controller\\": "AccountKit/Controller/",
+            "AccountKit\\Model\\": "AccountKit/Model/"
+        }
     }
 }

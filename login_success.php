@@ -1,8 +1,8 @@
 <?php
 
-require_once("lib/autoloader.php");
+require_once("AccountKit/autoloader.php");
 
-$accountKit = new \Controller\AccountKit();
+$accountKit = new \AccountKit\Controller\AccountKit();
 $user = $accountKit->getUserInformation($_POST['code']);
 
 if(empty($user)) {
