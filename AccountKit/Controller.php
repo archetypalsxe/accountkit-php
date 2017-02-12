@@ -1,14 +1,14 @@
 <?php
 
-namespace AccountKit\Controller;
+namespace AccountKit;
 
-use \AccountKit\Connection\AccountKit as AccountKitConnection;
-use \AccountKit\Model\AccessData as AccessDataModel;
-use \AccountKit\Model\User as UserModel;
-use \AccountKit\Model\UserData as UserDataModel;
+use \AccountKit\Connection as AccountKitConnection;
+use \AccountKit\Models\AccessData as AccessDataModel;
+use \AccountKit\Models\User as UserModel;
+use \AccountKit\Models\UserData as UserDataModel;
 use \Exception;
 
-class AccountKit
+class Controller
 {
     /**
      * Takes in an authirzation code that was received from Account Kit and

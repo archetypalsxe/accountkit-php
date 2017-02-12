@@ -2,7 +2,7 @@
 
 require_once("AccountKit/autoloader.php");
 
-$accountKit = new \AccountKit\Controller\AccountKit();
+$accountKit = new \AccountKit\Controller();
 $user = $accountKit->getUserInformation($_POST['code']);
 
 if(empty($user)) {

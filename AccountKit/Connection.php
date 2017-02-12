@@ -1,12 +1,12 @@
 <?php
 
-namespace AccountKit\Connection;
+namespace AccountKit;
 
-use \AccountKit\Model\AccessData as AccessDataModel;
-use \AccountKit\Model\UserData as UserDataModel;
+use \AccountKit\Models\AccessData as AccessDataModel;
+use \AccountKit\Models\UserData as UserDataModel;
 use \Exception;
 
-class AccountKit
+class Connection
 {
     /**
      * Sends out a request to get an authorization code from an access token

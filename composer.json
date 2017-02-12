@@ -6,9 +6,8 @@
     },
     "autoload": {
         "psr-4": {
-            "AccountKit\\Connection\\": "AccountKit/Connection/",
-            "AccountKit\\Controller\\": "AccountKit/Controller/",
-            "AccountKit\\Model\\": "AccountKit/Model/"
+            "AccountKit\\": "AccountKit/",
+            "AccountKit\\Models\\": "AccountKit/Models/"
         }
     }
 }
