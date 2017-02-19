@@ -8,6 +8,7 @@
         "psr-4": {
             "AccountKit\\": "AccountKit/",
             "AccountKit\\Models\\": "AccountKit/Models/"
-        }
+        },
+        "files": ["AccountKit/settings.php"]
     }
 }
