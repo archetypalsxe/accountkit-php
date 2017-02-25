@@ -21,4 +21,14 @@ if(empty($user)) {
   <div>Email: <?php echo $user->getEmail(); ?></div>
   <div>Access Token: <?php echo $user->getAccessToken(); ?></div>
   <div>Refresh Interval: <?php echo $user->getRefreshInterval(); ?></div>
+
+<?php
+
+sleep(5);
+$accountKit = new \AccountKit\Controller();
+$revalidatedUser = $accountKit->revalidateToken($user->getAccessToken());
+
+?>
+
+    <div>Revalidated Access Token: <?php echo $revalidatedUser->getAccessToken(); ?></div>
 </body>

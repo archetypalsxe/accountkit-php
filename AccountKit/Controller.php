@@ -21,11 +21,37 @@ class Controller
     {
         try {
             $accessData = $this->retrieveAccessData($authorizationCode);
+
+            // @TODO Duplicate code
             $user = new UserModel();
-            $user->setAccessDataModel($accessData);
             $user->setUserDataModel($this->retrieveUserData($accessData));
+            $user->setAccessDataModel($accessData);
+
             return $user;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
+            trigger_error($e->getMessage(), E_USER_NOTICE);
+        }
+    }
+
+    /**
+     * Revalidate the provided token to make sure it is still valid
+     *
+     * @param string $token
+     * @return UserModel
+     */
+    public function revalidateToken($token)
+    {
+        try {
+            $model = new AccessDataModel();
+            $model->setAccessToken($token);
+
+            // @TODO Combine duplicate code
+            $user = new UserModel();
+            $user->setUserDataModel($this->retrieveUserData($model));
+            $user->setAccessDataModel($model);
+
+            return $user;
+        } catch (Exception $e) {
             trigger_error($e->getMessage(), E_USER_NOTICE);
         }
     }
