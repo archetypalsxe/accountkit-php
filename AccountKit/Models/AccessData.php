@@ -75,8 +75,10 @@ class AccessData
 
     /**
      * Sets the user ID with the provided user ID
+     *
+     * @param string $userId
      */
     public function setUserId($userId) {
-        $this->userId = (int) $userId;
+        $this->userId = (string) $userId;
     }
 }
